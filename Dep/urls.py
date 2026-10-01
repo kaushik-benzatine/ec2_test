@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
 from django.urls import include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from Dep import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('Test.urls'))
+    path('api/', include('game.urls')),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
